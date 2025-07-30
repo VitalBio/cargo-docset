@@ -402,7 +402,7 @@ pub fn generate_docset(cfg: DocsetParams) -> Result<()> {
     if !cfg.no_clean {
         println!("Running 'cargo clean --doc'...");
         let mut cargo_clean_args = vec!["clean".to_owned()];
-        if let Some(ref manifest_path) = &cfg.manifest.manifest_path {
+        if let Some(manifest_path) = &cfg.manifest.manifest_path {
             cargo_clean_args.push("--manifest-path".to_owned());
             cargo_clean_args.push(manifest_path.to_string_lossy().to_string());
         }
