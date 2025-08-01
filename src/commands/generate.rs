@@ -336,13 +336,13 @@ fn get_docset_name(cfg: &DocsetParams, metadata: &Metadata) -> String {
     let (included, _excluded) = cfg.workspace.partition_packages(metadata);
 
     if included.len() == 1 {
-        return included[0].name.to_owned();
+        return included[0].name.to_string();
     }
 
     // Rust 1.64 will stabilize the `let_chains` feature which should allow combining both conditionals
     if let Some(root_package) = metadata.root_package() {
         if included.contains(&root_package) {
-            return root_package.name.to_owned();
+            return root_package.name.to_string();
         }
     }
 
@@ -365,8 +365,8 @@ fn get_docset_index(cfg: &DocsetParams, metadata: &Metadata) -> Option<String> {
     }
 
     match (cfg.workspace.all, cfg.workspace.package.len()) {
-        (false, 1) => Some(cfg.workspace.package[0].to_owned()),
-        _ => metadata.root_package().map(|p| p.name.to_owned())
+        (false, 1) => Some(cfg.workspace.package[0].to_string()),
+        _ => metadata.root_package().map(|p| p.name.to_string())
     }
 }
 
@@ -378,8 +378,8 @@ fn get_docset_platform_family(cfg: &DocsetParams, metadata: &Metadata) -> Option
     }
 
     match (cfg.workspace.all, cfg.workspace.package.len()) {
-        (false, 1) => Some(cfg.workspace.package[0].to_owned()),
-        _ => metadata.root_package().map(|p| p.name.to_owned())
+        (false, 1) => Some(cfg.workspace.package[0].to_string()),
+        _ => metadata.root_package().map(|p| p.name.to_string())
     }
 }
 
